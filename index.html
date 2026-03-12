@@ -9,6 +9,15 @@
 
 <title>Super Simulados</title>
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K203HP5ZB3"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-K203HP5ZB3');
+</script>
+
 <style>
 
 body{
@@ -275,28 +284,22 @@ let tempo=20
 let timer
 
 function iniciar(materia){
-
 document.getElementById("menu").style.display="none"
 document.getElementById("quiz").style.display="block"
-
 perguntas=banco[materia]
 atual=0
 pontos=0
-
 mostrar()
-
 }
 
 function mostrar(){
 
 tempo=20
-
 let barra=document.getElementById("tempo")
 
 timer=setInterval(()=>{
 
 tempo--
-
 barra.style.width=(tempo*5)+"%"
 
 if(tempo==0){
@@ -307,19 +310,15 @@ proxima()
 },1000)
 
 let p=perguntas[atual]
-
 document.getElementById("pergunta").innerText=p.pergunta
 
 let html=""
 
 p.opcoes.forEach((op,i)=>{
-
 html+=`<button class="opcao" onclick="responder(${i})">${op}</button>`
-
 })
 
 document.getElementById("opcoes").innerHTML=html
-
 }
 
 function responder(opcao){
@@ -327,13 +326,11 @@ function responder(opcao){
 clearInterval(timer)
 
 let p=perguntas[atual]
-
 let botoes=document.querySelectorAll(".opcao")
 
 botoes.forEach((btn,i)=>{
 
 if(i===p.resposta) btn.classList.add("correto")
-
 if(i===opcao && opcao!==p.resposta) btn.classList.add("errado")
 
 btn.disabled=true
@@ -343,7 +340,6 @@ btn.disabled=true
 if(opcao===p.resposta) pontos++
 
 setTimeout(proxima,1200)
-
 }
 
 function proxima(){
